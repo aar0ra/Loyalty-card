@@ -1,4 +1,4 @@
-modules = ["nodejs-20"]
+modules = ["nodejs-20", "web", "bash"]
 run = "npm start"
 
 [deployment]
@@ -8,3 +8,6 @@ deploymentTarget = "gce"
 [[ports]]
 localPort = 3000
 externalPort = 80
+
+[nix]
+channel = "stable-25_05"
