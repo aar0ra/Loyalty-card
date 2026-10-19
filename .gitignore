@@ -1,0 +1,8 @@
+node_modules/
+data.json
+certs/*
+!certs/README.md
+*.p12
+*.pem
+*.cer
+.env
