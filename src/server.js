@@ -135,7 +135,7 @@ app.post("/v1/log", (req, res) => {
   res.sendStatus(200);
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, "0.0.0.0", () => {
   const { missing } = loadCertificates();
   log(`Flywire loyalty app running on port ${port}`);
