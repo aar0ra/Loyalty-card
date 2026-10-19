@@ -1,0 +1,30 @@
+{
+  "name": "loyalty-card",
+  "version": "1.0.0",
+  "description": "Flywire Apple Wallet loyalty card prototype",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "setup-certs": "bash scripts/setup-certs.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aar0ra/Loyalty-card.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aar0ra/Loyalty-card/issues"
+  },
+  "homepage": "https://github.com/aar0ra/Loyalty-card#readme",
+  "dependencies": {
+    "express": "^5.3.0",
+    "passkit-generator": "^3.7.0",
+    "qrcode": "^1.5.4"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  }
+}
