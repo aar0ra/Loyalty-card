@@ -43,7 +43,12 @@ function save() {
 }
 
 export const store = {
-  get: () => load(),
+  // AUTH_TOKEN (Replit Secret) keeps installed passes working even if data.json is reset.
+  get: () => {
+    load();
+    if (process.env.AUTH_TOKEN) db.authToken = process.env.AUTH_TOKEN;
+    return db;
+  },
 
   updateMember(patch) {
     load();

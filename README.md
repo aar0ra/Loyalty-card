@@ -45,16 +45,22 @@ A small Node.js app for Replit that issues **one** Apple Wallet loyalty card and
    | `PASS_TYPE_ID` | `pass.com.yourcompany.loyalty` | Must match the certificate exactly |
    | `TEAM_ID` | `ABCDE12345` | Your Apple Team ID |
    | `ADMIN_PASSWORD` | `something-secret` | Password for `/admin` (any username). Defaults to `admin` |
+   | `AUTH_TOKEN` | `3f9c…` (16+ chars) | Secret shared with installed passes. Recommended before deploying |
 
    *Optional:* instead of files in `certs/`, you can put the PEMs in Secrets as `SIGNER_CERT`, `SIGNER_KEY`, `WWDR_CERT` (raw PEM or base64), plus `SIGNER_KEY_PASSPHRASE` if your key is encrypted.
 
 ### 3. Run
 
-Click **Run**. Open the webview URL (`https://….replit.dev`) **on your iPhone in Safari** and tap **Add to Apple Wallet**.
+Click **Run** and check the page in the Replit preview. The `.replit.dev` preview URL is for development only and usually **won't work on your iPhone**. To test on a phone, deploy the app:
 
-Then open `/admin` on any device, change something, and click **Save & push to wallets**.
+### 4. Deploy (needed for iPhone)
 
-> **The pass remembers the URL it was downloaded from** and uses it for updates. The dev URL only works while the Repl is running. For something that stays up, **Deploy** it (Reserved VM is the simplest: it keeps `data.json` on disk), set the `PUBLIC_URL` secret to the deployment URL, delete the pass from your phone, and add it again from the deployed URL.
+1. Add one more Secret: `AUTH_TOKEN`, set to any random string of 16+ characters (e.g. run `openssl rand -hex 24` in the Shell). This keeps installed passes working if the server restarts.
+2. Click **Deploy / Publish** → choose **Reserved VM** (it keeps `data.json` on disk) → **Deploy**. Deployments use the same Secrets as the workspace.
+3. You get a permanent `https://<name>.replit.app` URL. Open it **in Safari on your iPhone** and tap **Add to Apple Wallet**.
+4. Open `https://<name>.replit.app/admin`, change something, and click **Save & push to wallets**.
+
+> **The pass remembers the URL it was downloaded from** and uses it for updates. Always add it from the deployed `.replit.app` URL. After you change code, redeploy. If the deployed URL ever changes, remove the pass from Wallet and add it again. You can pin the URL with a `PUBLIC_URL` secret, but you normally don't need to.
 
 ---
 
