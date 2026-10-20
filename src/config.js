@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const ROOT = path.resolve(import.meta.dirname, "..");
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const PATHS = {
   root: ROOT,
   assets: path.join(ROOT, "assets"),
@@ -53,6 +54,8 @@ export function loadCertificates() {
 
 export function publicUrl(req) {
   if (process.env.PUBLIC_URL) return process.env.PUBLIC_URL.replace(/\/$/, "");
-  if (process.env.REPLIT_DEV_DOMAIN) return `https://${process.env.REPLIT_DEV_DOMAIN}`;
-  return `${req.protocol}://${req.get("host")}`;
+  // Use the address the visitor actually used. Wallet requires HTTPS, so assume it
+  // everywhere except localhost (Replit's proxy terminates TLS in front of the app).
+  const host = req.get("host");
+  return `${/^(localhost|127\.0\.0\.1)(:|$)/.test(host) ? req.protocol : "https"}://${host}`;
 }

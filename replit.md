@@ -25,10 +25,15 @@ Secrets (raw PEM or base64). For an encrypted key, also set
 `SIGNER_KEY_PASSPHRASE`. Alternatively, supply the certificate files described
 in `certs/README.md`; never commit certificate material.
 
+The latest upstream code also supports an `AUTH_TOKEN` secret to keep the
+Wallet authentication token stable if `data.json` is reset. Configure it before
+issuing passes; changing it later invalidates authentication for existing passes.
+
 See `README.md` for Apple's certificate creation instructions. Without these
 credentials, the app displays a missing-certificates banner and pass download
 fails explicitly; this is expected, not a server startup failure.
 
-The development URL is used automatically for QR codes and pass updates.
+The visitor's URL is used automatically for QR codes and pass updates, unless
+`PUBLIC_URL` is configured.
 Actual pass installation and push notifications must be tested on an iPhone
 after valid Apple credentials are configured.
