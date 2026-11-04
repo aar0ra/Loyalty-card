@@ -89,6 +89,7 @@ export function buildPass({ member, authToken, updatedAt }, webServiceURL) {
   }
 
   pass.backFields.push(
+    { key: "websiteLogin", label: "Access your account (demo)", value: "https://www.flywire.com", dataDetectorTypes: ["PKDataDetectorTypeLink"] },
     { key: "message", label: "Latest message", value: member.message || "—", changeMessage: "%@" },
     { key: "memberId", label: "Member ID", value: member.memberId },
     { key: "balanceBack", label: "Balance", value: money(member.balance, member.currency) },
