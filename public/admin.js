@@ -3,17 +3,17 @@ const PRESETS = {
   ok: {
     status: "ok",
     statusText: "Account in good standing",
-    message: "Thanks! Your account is up to date.",
+    message: 'Your account is up to date. Open Pass Details and tap "View your account".',
   },
   overdue: {
     status: "warning",
     statusText: "Account overdue",
-    message: "Your account is past due. Please make a payment to avoid late fees.",
+    message: 'Your account is overdue. Open Pass Details and tap "Update payment method".',
   },
   failed: {
     status: "error",
     statusText: "Installment payment failed",
-    message: "We couldn't process your installment payment. Please update your payment method.",
+    message: 'Your installment payment failed. Open Pass Details and tap "Review payment options".',
   },
 };
 

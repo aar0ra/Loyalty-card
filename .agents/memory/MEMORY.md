@@ -1,1 +1,2 @@
 - [Upstream syncing](upstream-syncing.md) — imported and upstream histories differed; preserve local history and the working Replit runtime when syncing.
+- [Demo website links](demo-website-links.md) — Wallet action links are demo navigation, not real pre-authentication.
