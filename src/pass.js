@@ -4,9 +4,9 @@ import { PKPass } from "passkit-generator";
 import { BRAND, PASS, PATHS, loadCertificates } from "./config.js";
 
 const STATUS = {
-  ok: { header: "ACTIVE", icon: "✅", labelColor: BRAND.lightBlue },
-  warning: { header: "WARNING", icon: "⚠️", labelColor: BRAND.warning },
-  error: { header: "ACTION NEEDED", icon: "⛔️", labelColor: BRAND.error },
+  ok: { header: "ACTIVE", icon: "✅", labelColor: BRAND.lightBlue, websiteLabel: "View your account" },
+  warning: { header: "WARNING", icon: "⚠️", labelColor: BRAND.warning, websiteLabel: "Update payment method" },
+  error: { header: "ACTION NEEDED", icon: "⛔️", labelColor: BRAND.error, websiteLabel: "Review payment options" },
 };
 
 const rgb = (hex) => {
@@ -89,6 +89,7 @@ export function buildPass({ member, authToken, updatedAt }, webServiceURL) {
   }
 
   pass.backFields.push(
+    { key: "websiteLogin", label: status.websiteLabel, value: "https://www.flywire.com", dataDetectorTypes: ["PKDataDetectorTypeLink"] },
     { key: "message", label: "Latest message", value: member.message || "—", changeMessage: "%@" },
     { key: "memberId", label: "Member ID", value: member.memberId },
     { key: "balanceBack", label: "Balance", value: money(member.balance, member.currency) },
